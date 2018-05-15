@@ -33,7 +33,7 @@ bool ibf_node::load() {
     // CA Ports:01 SystemGUID:7cfe900300327bfe NodeGUID:7cfe900300327bff PortGUID:7cfe900300327bff VenID:0002C9 DevID:1013 Rev:00000000 {DataDirect HCA-6} LID:0013 PN:01
     // SW Ports:25 SystemGUID:7cfe900300992080 NodeGUID:7cfe900300f2da60 PortGUID:7cfe900300f2da60 VenID:000002C9 DevID:CF080000 Rev:000000A0 {MF0;cs7500:CS7500/L17/U2} LID:00F9 PN:07
     // CA Ports:01 SystemGUID:7cfe9003004b0700 NodeGUID:7cfe9003004b0700 PortGUID:7cfe9003004b0700 VenID:0002C9 DevID:1013 Rev:00000000 {ime5 HCA-1} LID:0032 PN:01
-    boost::regex getNodesRegEx("^(CA|SW) Ports:(\\d+) SystemGUID:([[:alnum:]]+) NodeGUID:([[:alnum:]]+) PortGUID:([[:alnum:]]+) VenID:([[:alnum:]]+) DevID:([[:alnum:]]+) Rev:([[:alnum:]]+) {(.*)} LID:([[:alnum:]]+) PN:([[:alnum:]]+)");
+    boost::regex getNodesRegEx("^(CA|SW|CA-SM) Ports:(\\d+) SystemGUID:([[:alnum:]]+) NodeGUID:([[:alnum:]]+) PortGUID:([[:alnum:]]+) VenID:([[:alnum:]]+) DevID:([[:alnum:]]+) Rev:([[:alnum:]]+) {(.*)} LID:([[:alnum:]]+) PN:([[:alnum:]]+)");
     boost::smatch getNodesRegExResults;
     boost::regex_match(this->dump_, getNodesRegExResults, getNodesRegEx);
 
