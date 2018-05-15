@@ -1,0 +1,2 @@
+cmake >= 2.8
+boost (filesystem system regex)

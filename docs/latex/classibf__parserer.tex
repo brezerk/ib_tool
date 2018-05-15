@@ -1,0 +1,71 @@
+\hypertarget{classibf__parserer}{}\section{ibf\+\_\+parserer Class Reference}
+\label{classibf__parserer}\index{ibf\+\_\+parserer@{ibf\+\_\+parserer}}
+
+
+The \mbox{\hyperlink{classibf__parserer}{ibf\+\_\+parserer}} class.  
+
+
+
+
+{\ttfamily \#include $<$ibf\+\_\+parser.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classibf__parserer_a68ed2693069c85fb82711b0844946d2a}\label{classibf__parserer_a68ed2693069c85fb82711b0844946d2a}} 
+\mbox{\hyperlink{classibf__parserer_a68ed2693069c85fb82711b0844946d2a}{ibf\+\_\+parserer}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classibf__parserer}{ibf\+\_\+parserer}} Constructor \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classibf__parserer_accb8a7b401c32ebd5d9c09b26fef3361}\label{classibf__parserer_accb8a7b401c32ebd5d9c09b26fef3361}} 
+\mbox{\hyperlink{classibf__parserer_accb8a7b401c32ebd5d9c09b26fef3361}{$\sim$ibf\+\_\+parserer}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classibf__parserer}{ibf\+\_\+parserer}} Destructor \+:) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classibf__parserer_a630ed53f2480e4b2fc6c7c5b0f4edc07}{load}} ()
+\begin{DoxyCompactList}\small\item\em test dump file load \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classibf__parserer_a1c1fb0c3f5ca1347264ab1ab4619bf15}{parse}} (int action, std\+::string param=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em parse brief I\+BF data dump \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \mbox{\hyperlink{classibf__parserer}{ibf\+\_\+parserer}} class. 
+
+This class will load, parse and store ibf data dump. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classibf__parserer_a630ed53f2480e4b2fc6c7c5b0f4edc07}\label{classibf__parserer_a630ed53f2480e4b2fc6c7c5b0f4edc07}} 
+\index{ibf\+\_\+parserer@{ibf\+\_\+parserer}!load@{load}}
+\index{load@{load}!ibf\+\_\+parserer@{ibf\+\_\+parserer}}
+\subsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily bool ibf\+\_\+parserer\+::load (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+test dump file load 
+
+\begin{DoxyReturn}{Returns}
+faisle if any issues 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classibf__parserer_a1c1fb0c3f5ca1347264ab1ab4619bf15}\label{classibf__parserer_a1c1fb0c3f5ca1347264ab1ab4619bf15}} 
+\index{ibf\+\_\+parserer@{ibf\+\_\+parserer}!parse@{parse}}
+\index{parse@{parse}!ibf\+\_\+parserer@{ibf\+\_\+parserer}}
+\subsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily bool ibf\+\_\+parserer\+::parse (\begin{DoxyParamCaption}\item[{int}]{action,  }\item[{std\+::string}]{param = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+parse brief I\+BF data dump 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & requested action on the processed data \\
+\hline
+{\em param} & action argument or parameter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+core/ibf\+\_\+parser.\+hpp\item 
+core/ibf\+\_\+parser.\+cpp\end{DoxyCompactItemize}

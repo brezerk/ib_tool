@@ -1,0 +1,25 @@
+
+Just some tests created by Oleksii.Malakhov
+This is licensed under the terms of GPL
+
+Requrements
+*************************************
+
+ * cmake >= 2.8
+ * boost (filesystem system regex)
+
+Build
+*************************************
+ mkdir build
+ cd build
+ cmake ..
+
+Install
+*************************************
+ make install
+
+Run
+*************************************
+
+ # ./ibtool
+
