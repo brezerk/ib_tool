@@ -2,7 +2,7 @@
 Just some tests created by Oleksii.Malakhov
 This is licensed under the terms of GPL
 
-Requrements
+Requirements
 *************************************
 
  * cmake >= 2.8
@@ -13,10 +13,6 @@ Build
  mkdir build
  cd build
  cmake ..
-
-Install
-*************************************
- make install
 
 Run
 *************************************
