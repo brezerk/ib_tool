@@ -48,78 +48,44 @@ bool ibf_parserer::parse(int action, std::string param) {
     boost::regex getNodesRegEx("^{(.*)} {(.*)} (.*)$");
     boost::smatch getNodesRegExResults;
 
-    bool load_ok;
-
     while (std::getline(file, str))
     {
-        //std::cout << str << std::endl;
         boost::regex_match(str, getNodesRegExResults, getNodesRegEx);
 
         for (int i=1; i<=3; i++){
-            std::cout << "Node " << i << " : " << getNodesRegExResults[i] << std::endl;
-        }
-        continue;
 #ifdef DEBUG
-        std::cout << "Node 0: " << getNodesRegExResults[1] << std::endl;
-        std::cout << "Node 1: " << getNodesRegExResults[2] << std::endl;
-        std::cout << "Node Link: " << getNodesRegExResults[3] << std::endl;
+            std::cout << "Item " << i << " : " << getNodesRegExResults[i] << std::endl;
 #endif
+            if (i<3) {
+                std::string dump = getNodesRegExResults[i];
+                boost::trim(dump);
 
-        std::string ca_dump = getNodesRegExResults[1];
-        boost::trim(ca_dump);
+                std::unique_ptr<ibf_node> node(new ibf_node(dump));
+                if (!node->load()) {
+                    std::cerr << "Got error on loading dump string:" << std::endl << dump << std::endl;
+                    return false;
+                }
 
-        std::unique_ptr<ibf_node> ca_node(new ibf_node(ca_dump));
-        load_ok = ca_node->load();
-
-
-        if (!load_ok) {
-            std::cerr << "Got error on loading dump string:" << std::endl << ca_dump << std::endl;
-            return false;
+                switch (action) {
+                    case D_ACTION_NODES_ALL:
+                        node->print();
+                    break;
+                    case D_ACTION_NODE:
+                        if (node->getNodeGUID() == param) {
+                            node->print();
+                        }
+                    case D_ACTION_NODES_REG:
+                        boost::regex searchString(param);
+                        boost::smatch searchStringResults;
+                        if (boost::regex_match(node->getNodeGUID(), searchStringResults, searchString)){
+                            node->print();
+                        }
+                    break;
+                }
+            } else {
+                //TODO: Handle Link attributes
+            }
         }
-
-        switch (action) {
-            case D_ACTION_NODES_ALL:
-                ca_node->print();
-            break;
-            case D_ACTION_NODE:
-                if (ca_node->getNodeGUID() == param) {
-                    ca_node->print();
-                }
-            case D_ACTION_NODES_REG:
-                boost::regex searchString(param);
-                boost::smatch searchStringResults;
-                if (boost::regex_match(ca_node->getNodeGUID(), searchStringResults, searchString)){
-                    ca_node->print();
-                }
-            break;
-        }
-
-        std::string sw_dump = getNodesRegExResults[2];
-        boost::trim(sw_dump);
-        std::unique_ptr<ibf_node> sw_node(new ibf_node(sw_dump));
-        load_ok = sw_node->load();
-
-        if (!load_ok) {
-            std::cerr << "Got error on loading dump string:" << std::endl << sw_dump<< std::endl;
-            return false;
-        }
-
-        switch (action) {
-            case D_ACTION_NODES_ALL:
-                sw_node->print();
-            break;
-            case D_ACTION_NODE:
-                if (sw_node->getNodeGUID() == param) {
-                    sw_node->print();
-                }
-            case D_ACTION_NODES_REG:
-                boost::regex searchString(param);
-                boost::smatch searchStringResults;
-                if (boost::regex_match(sw_node->getNodeGUID(), searchStringResults, searchString)){
-                    sw_node->print();
-                }
-            break;
-        }       
     }
     return true;
 }
