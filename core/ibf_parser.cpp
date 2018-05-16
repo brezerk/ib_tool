@@ -64,7 +64,7 @@ bool ibf_parserer::parse(int action, std::string param) {
         std::string ca_dump = getNodesRegExResults[1];
         boost::trim(ca_dump);
 
-        ibf_node* ca_node = new ibf_node(ca_dump);
+        std::unique_ptr<ibf_node> ca_node(new ibf_node(ca_dump));
         load_ok = ca_node->load();
 
 
@@ -90,11 +90,9 @@ bool ibf_parserer::parse(int action, std::string param) {
             break;
         }
 
-        delete(ca_node);
-
         std::string sw_dump = getNodesRegExResults[2];
         boost::trim(sw_dump);
-        ibf_node* sw_node = new ibf_node(sw_dump);
+        std::unique_ptr<ibf_node> sw_node(new ibf_node(sw_dump));
         load_ok = sw_node->load();
 
         if (!load_ok) {
@@ -117,8 +115,7 @@ bool ibf_parserer::parse(int action, std::string param) {
                     sw_node->print();
                 }
             break;
-        }
-        delete(sw_node);
+        }       
     }
     return true;
 }

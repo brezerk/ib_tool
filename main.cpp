@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
 
     std::cout << "using ibf dump file: " << data_file << "!\n" ;
 
-    ibf_parserer *parser_ = new ibf_parserer(data_file);
+    std::unique_ptr<ibf_parserer> parser_(new ibf_parserer(data_file));
     if (!parser_->load())
         return EX_DATAERR;
 
@@ -121,8 +121,6 @@ int main(int argc, char *argv[])
         }
         std::cout << std::endl;
     }
-
-    delete(parser_);
 
     std::cout << std::endl;
     return EX_OK;
