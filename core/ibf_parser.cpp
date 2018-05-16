@@ -51,7 +51,6 @@ bool ibf_parserer::parse(int action, std::string param) {
     while (std::getline(file, str))
     {
         boost::regex_match(str, getNodesRegExResults, getNodesRegEx);
-
         for (int i=1; i<=3; i++){
 #ifdef DEBUG
             std::cout << "Item " << i << " : " << getNodesRegExResults[i] << std::endl;
@@ -74,6 +73,7 @@ bool ibf_parserer::parse(int action, std::string param) {
                         if (node->getNodeGUID() == param) {
                             node->print();
                         }
+                    break;
                     case D_ACTION_NODES_REG:
                         boost::regex searchString(param);
                         boost::smatch searchStringResults;
