@@ -87,39 +87,42 @@ int main(int argc, char *argv[])
     if (!parser_->load())
         return EX_DATAERR;
 
-    boost::regex getCommandEx("^(\\w+)|((\\w+) (\\w+) (.*))$");
+    const boost::regex getCommandEx("(\\w+)");
+    const boost::sregex_iterator end_tokens;
     boost::smatch getCommandExResults;
+
 
     std::string command;
     while(true){
         std::cout << "ibtool# ";
         std::getline(std::cin, command);
+        boost::sregex_iterator command_it(command.begin(), command.end(), getCommandEx);
 
-        if (boost::regex_match(command, getCommandExResults, getCommandEx)){
-            std::string cmd = getCommandExResults[1];
-            std::string action = getCommandExResults[2];
-            std::string param = getCommandExResults[3];
-            if (cmd == "show") {
-                if (action == "node") {
-                    parser_->parse(D_ACTION_NODE, param);
-                } else if (action == "nodes") {
-                    if (param == "all") {
-                        parser_->parse(D_ACTION_NODES_ALL);
-                    } else {
-                        parser_->parse(D_ACTION_NODES_REG, param);
-                    }
+
+        std::string cmd = command_it->str();
+        if (cmd == "show") {
+            *command_it++;
+            if (command_it == end_tokens) { valid_commands(); continue; }
+            std::string action = command_it->str();
+            *command_it++;
+            if (command_it == end_tokens) { valid_commands(); continue; }
+            std::string param = command_it->str();
+            if (action == "node") {
+                parser_->parse(D_ACTION_NODE, param);
+            } else if (action == "nodes") {
+                if (param == "all") {
+                    parser_->parse(D_ACTION_NODES_ALL);
                 } else {
-                    valid_commands();
+                    parser_->parse(D_ACTION_NODES_REG, param);
                 }
-            } else if (cmd == "exit") {
-                  break;
             } else {
-                    valid_commands();
+                valid_commands();
             }
+        } else if (cmd == "exit") {
+            break;
         } else {
             valid_commands();
         }
-        std::cout << std::endl;
     }
 
     std::cout << std::endl;

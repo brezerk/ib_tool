@@ -55,6 +55,10 @@ bool ibf_parserer::parse(int action, std::string param) {
         //std::cout << str << std::endl;
         boost::regex_match(str, getNodesRegExResults, getNodesRegEx);
 
+        for (int i=1; i<=3; i++){
+            std::cout << "Node " << i << " : " << getNodesRegExResults[i] << std::endl;
+        }
+        continue;
 #ifdef DEBUG
         std::cout << "Node 0: " << getNodesRegExResults[1] << std::endl;
         std::cout << "Node 1: " << getNodesRegExResults[2] << std::endl;
