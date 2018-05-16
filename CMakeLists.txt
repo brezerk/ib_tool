@@ -77,24 +77,26 @@ include_directories(
 
 set (CORE_HEADERS
 	${CMAKE_SOURCE_DIR}/config.hpp
-        ${CMAKE_SOURCE_DIR}/core/utils.hpp
-        ${CMAKE_SOURCE_DIR}/core/ibf_parser.hpp
-        ${CMAKE_SOURCE_DIR}/core/ibf_node.hpp
+	${CMAKE_SOURCE_DIR}/core/utils.hpp
+	${CMAKE_SOURCE_DIR}/core/ibf_parser.hpp
+	${CMAKE_SOURCE_DIR}/core/ibf_node.hpp
 )
 
 set (CORE_SOURCES
 	${CMAKE_SOURCE_DIR}/main.cpp
-        ${CMAKE_SOURCE_DIR}/core/utils.cpp
-        ${CMAKE_SOURCE_DIR}/core/ibf_parser.cpp
-        ${CMAKE_SOURCE_DIR}/core/ibf_node.cpp
+	${CMAKE_SOURCE_DIR}/core/utils.cpp
+	${CMAKE_SOURCE_DIR}/core/ibf_parser.cpp
+	${CMAKE_SOURCE_DIR}/core/ibf_node.cpp
 )
 
 set (CORE_LIBRARIES
-        ${Boost_LIBRARIES}
+	${Boost_LIBRARIES}
 )
 
 add_executable (ibtool ${CORE_HEADERS} ${CORE_SOURCES})
 target_link_libraries (ibtool ${CORE_LIBRARIES})
+
+install(TARGETS ibtool DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
 # requres boot::test framework. we won't use it here, right? :)
 #add_subdirectory(test)
@@ -103,15 +105,15 @@ target_link_libraries (ibtool ${CORE_LIBRARIES})
 
 # Unintall target
 configure_file (
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-    IMMEDIATE @ONLY
-    )
+	"${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
+	"${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+	IMMEDIATE @ONLY
+	)
 
 add_custom_target (uninstall
-    "${CMAKE_COMMAND}"
-    -P
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-    )
+	"${CMAKE_COMMAND}"
+	-P
+	"${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+	)
 
 # EOF
