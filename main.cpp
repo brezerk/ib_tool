@@ -54,6 +54,7 @@ void valid_commands(void) {
     std::cerr << "\tshow nodes all" << std::endl;
     std::cerr << "\tshow node <node_GUID>" << std::endl;
     std::cerr << "\tshow nodes <reg_exp>" << std::endl;
+    std::cerr << "\texit" << std::endl;
 }
 
 int main(int argc, char *argv[])
@@ -86,7 +87,7 @@ int main(int argc, char *argv[])
     if (!parser_->load())
         return EX_DATAERR;
 
-    boost::regex getCommandEx("^(\\w+) (\\w+) (.*)$");
+    boost::regex getCommandEx("^(\\w+)|((\\w+) (\\w+) (.*))$");
     boost::smatch getCommandExResults;
 
     std::string command;
@@ -110,6 +111,8 @@ int main(int argc, char *argv[])
                 } else {
                     valid_commands();
                 }
+            } else if (cmd == "exit") {
+                  break;
             } else {
                     valid_commands();
             }
