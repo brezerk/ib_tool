@@ -1,0 +1,24 @@
+v1.3:
+ * Implement 'show nodes neighbors' command;
+ * Update README with install/uninstall targets
+ * Update Doxyfile to use relative paths
+ * Update docs
+
+v1.2:
+ * Deduplicate Nodes in the output;
+ * CLI: Fixup RegExp argument handler;
+
+v1.1.1:
+ * Fixup RegExp argument handling;
+ * Fixup missing break;
+
+v1.1
+ * Add missing install target
+ * Code deduplication;
+ * Rework cli commands handling using iterator;
+ * Let std::unique_ptr manage memory;
+ * Add exit command;
+
+v1.0
+ * initial release;
+
