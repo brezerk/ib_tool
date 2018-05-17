@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
     if (!parser_->load())
         return EX_DATAERR;
 
-    const boost::regex getCommandEx("(\\w+)");
+    const boost::regex getCommandEx("([\\w\\*\\+\\.\\[\\]_-\\{\\}\\)\\(]+)");
     const boost::sregex_iterator end_tokens;
     boost::smatch getCommandExResults;
 
@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
         std::getline(std::cin, command);
         boost::sregex_iterator command_it(command.begin(), command.end(), getCommandEx);
 
-
+        if (command_it == end_tokens) { valid_commands(); continue; }
         std::string cmd = command_it->str();
         if (cmd == "show") {
             *command_it++;
