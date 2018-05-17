@@ -23,7 +23,13 @@ bool \mbox{\hyperlink{classibf__node_ab9fb02d662040776f493cecc38b8d09a}{load}} (
 void \mbox{\hyperlink{classibf__node_a6ad6f5730885761558dbcdd49a476246}{print}} ()
 \begin{DoxyCompactList}\small\item\em print node info (Node type, Number of ports, Node G\+U\+ID, Port G\+U\+ID, Node description, L\+ID) \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classibf__node_afe265cfd9c0423988b063c0356058a99}{get\+Node\+G\+U\+ID}} ()
-\begin{DoxyCompactList}\small\item\em get node\+G\+U\+ID \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em get node\+G\+U\+ID \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classibf__node_a1edc2663a50b193be7b9a615cc288837}{get\+Local\+Port}} ()
+\begin{DoxyCompactList}\small\item\em get local port \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classibf__node_a286ee4769949a09e9bcbdbc88d9a820c}{get\+Local\+Port\+G\+U\+ID}} ()
+\begin{DoxyCompactList}\small\item\em get local port G\+U\+ID \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classibf__node_a82c225df0e9a802f8b146c1a7c069bdb}{get\+Ports}} ()
+\begin{DoxyCompactList}\small\item\em get node ports count \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -50,6 +56,32 @@ Load and parse node dump info
 
 
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{classibf__node_a1edc2663a50b193be7b9a615cc288837}\label{classibf__node_a1edc2663a50b193be7b9a615cc288837}} 
+\index{ibf\+\_\+node@{ibf\+\_\+node}!get\+Local\+Port@{get\+Local\+Port}}
+\index{get\+Local\+Port@{get\+Local\+Port}!ibf\+\_\+node@{ibf\+\_\+node}}
+\subsubsection{\texorpdfstring{get\+Local\+Port()}{getLocalPort()}}
+{\footnotesize\ttfamily uint32\+\_\+t ibf\+\_\+node\+::get\+Local\+Port (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get local port 
+
+\begin{DoxyReturn}{Returns}
+local port 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classibf__node_a286ee4769949a09e9bcbdbc88d9a820c}\label{classibf__node_a286ee4769949a09e9bcbdbc88d9a820c}} 
+\index{ibf\+\_\+node@{ibf\+\_\+node}!get\+Local\+Port\+G\+U\+ID@{get\+Local\+Port\+G\+U\+ID}}
+\index{get\+Local\+Port\+G\+U\+ID@{get\+Local\+Port\+G\+U\+ID}!ibf\+\_\+node@{ibf\+\_\+node}}
+\subsubsection{\texorpdfstring{get\+Local\+Port\+G\+U\+I\+D()}{getLocalPortGUID()}}
+{\footnotesize\ttfamily std\+::string ibf\+\_\+node\+::get\+Local\+Port\+G\+U\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get local port G\+U\+ID 
+
+\begin{DoxyReturn}{Returns}
+local port G\+U\+ID 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classibf__node_afe265cfd9c0423988b063c0356058a99}\label{classibf__node_afe265cfd9c0423988b063c0356058a99}} 
 \index{ibf\+\_\+node@{ibf\+\_\+node}!get\+Node\+G\+U\+ID@{get\+Node\+G\+U\+ID}}
 \index{get\+Node\+G\+U\+ID@{get\+Node\+G\+U\+ID}!ibf\+\_\+node@{ibf\+\_\+node}}
@@ -62,6 +94,19 @@ get node\+G\+U\+ID
 
 \begin{DoxyReturn}{Returns}
 node\+G\+U\+ID 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classibf__node_a82c225df0e9a802f8b146c1a7c069bdb}\label{classibf__node_a82c225df0e9a802f8b146c1a7c069bdb}} 
+\index{ibf\+\_\+node@{ibf\+\_\+node}!get\+Ports@{get\+Ports}}
+\index{get\+Ports@{get\+Ports}!ibf\+\_\+node@{ibf\+\_\+node}}
+\subsubsection{\texorpdfstring{get\+Ports()}{getPorts()}}
+{\footnotesize\ttfamily uint32\+\_\+t ibf\+\_\+node\+::get\+Ports (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get node ports count 
+
+\begin{DoxyReturn}{Returns}
+node ports count 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classibf__node_ab9fb02d662040776f493cecc38b8d09a}\label{classibf__node_ab9fb02d662040776f493cecc38b8d09a}} 
 \index{ibf\+\_\+node@{ibf\+\_\+node}!load@{load}}
