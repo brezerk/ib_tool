@@ -37,6 +37,7 @@
 
 /////////1/////////2/////////3/////////4/////////5/////////6/////////7/////////8
 
+
 /**
  * @brief The ibf_parserer class
  *
@@ -83,6 +84,14 @@ private:
      * Array for storing nodes id's.
      */
     std::array<std::string, 0> nodes_;
+
+    /**
+     * @brief fill missing ports with DWN status
+     * @param cur_port current port number
+     * @param max_port max port number
+     */
+    void fill_missing_ports(const uint32_t curr_port, const uint32_t max_port) const;
+
 };
 
 #endif // IBF_PARSER_H

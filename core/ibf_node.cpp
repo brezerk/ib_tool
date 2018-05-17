@@ -42,12 +42,10 @@ bool ibf_node::load() {
 #endif
 
     this->type_ = getNodesRegExResults[1];
-    try {
-        this->ports_ = boost::lexical_cast<int>(getNodesRegExResults[2]);
-    } catch( boost::bad_lexical_cast const& ) {
-        std::cerr << "Error: invalid port number: " << getNodesRegExResults[2] << std::endl;
-        return false;
-    }
+
+    std::istringstream converter(getNodesRegExResults[2]);
+    converter >> std::hex >> this->ports_;
+
     this->system_guid_ = getNodesRegExResults[3];
     this->node_guid_ = getNodesRegExResults[4];
     this->port_guid_ = getNodesRegExResults[5];
@@ -56,8 +54,9 @@ bool ibf_node::load() {
     this->rev_ = getNodesRegExResults[8];
     this->name_ = getNodesRegExResults[9];
     this->lid_ = getNodesRegExResults[10];
-    this->pn_ = getNodesRegExResults[11];
 
+    std::istringstream converter2(getNodesRegExResults[11]);
+    converter2 >> std::hex >> this->pn_;
 
     if (this->type_ == ""){
         std::cerr << "Error: invalid node type: " << this->type_ << std::endl;
@@ -104,15 +103,10 @@ bool ibf_node::load() {
         return false;
     }
 
-    if (this->pn_ == ""){
-        std::cerr << "Error: invalid PN: " << this->pn_ << std::endl;
-        return false;
-    }
-
     return true;
 }
 
 void ibf_node::print(){
     //(Node type, Number of ports, Node GUID, Port GUID, Node description, LID)
-    std::cout << this->type_ << " " << this->ports_ << " " << this->node_guid_ << " " << this->name_ << " " << this->lid_ << std::endl;
+    std::cout << this->type_ << "\t" << this->ports_ << "\t" << this->node_guid_ << "\t" << this->name_ << "\t\t" << this->lid_ << std::endl;
 }

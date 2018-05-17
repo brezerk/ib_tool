@@ -75,6 +75,30 @@ public:
         return this->node_guid_;
     }
 
+    /**
+     * @brief get local port
+     * @return local port
+     */
+    uint32_t getLocalPort() {
+        return this->pn_;
+    }
+
+    /**
+     * @brief get local port GUID
+     * @return local port GUID
+     */
+    std::string getLocalPortGUID() {
+        return this->port_guid_;
+    }
+
+    /**
+     * @brief get node ports count
+     * @return node ports count
+     */
+    uint32_t getPorts() {
+        return this->ports_;
+    }
+
 private:
     /**
      * @brief data_file_
@@ -92,7 +116,7 @@ private:
      * @brief ports_
      * Node pots count
      */
-    int ports_;
+    uint32_t ports_;
 
     /**
      * @brief system_guid_
@@ -152,7 +176,7 @@ private:
      * @brief pn_
      * pn
      */
-    std::string pn_;
+    uint32_t pn_;
 };
 
 #endif // IBF_NODE_H

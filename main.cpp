@@ -52,8 +52,9 @@ void help(void) {
 void valid_commands(void) {
     std::cerr << "Valid commands are:" << std::endl;
     std::cerr << "\tshow nodes all" << std::endl;
-    std::cerr << "\tshow node <node_GUID>" << std::endl;
     std::cerr << "\tshow nodes <reg_exp>" << std::endl;
+    std::cerr << "\tshow node <node_GUID>" << std::endl;
+    std::cerr << "\tshow node neighbors <node_GUID>" << std::endl;
     std::cerr << "\texit" << std::endl;
 }
 
@@ -108,7 +109,14 @@ int main(int argc, char *argv[])
             if (command_it == end_tokens) { valid_commands(); continue; }
             std::string param = command_it->str();
             if (action == "node") {
-                parser_->parse(D_ACTION_NODE, param);
+                if (param == "neighbors") {
+                    *command_it++;
+                    if (command_it == end_tokens) { valid_commands(); continue; }
+                    param = command_it->str();
+                    parser_->parse(D_ACTION_NODE_NEIGHBORS, param);
+                } else {
+                    parser_->parse(D_ACTION_NODE, param);
+                }
             } else if (action == "nodes") {
                 if (param == "all") {
                     parser_->parse(D_ACTION_NODES_ALL);
