@@ -39,11 +39,19 @@ bool ibf_parserer::load() {
 }
 
 bool ibf_parserer::parse(int action, std::string param) {
+    std::ifstream file;
+    try {
+        file.open(this->data_file_, std::ifstream::in);
+    } catch (std::ifstream::failure e) {
+        std::cerr << "Exception opening file: " << e.what() << std::endl;
+        return false;
+    }
 
-    this->load();
-
-    std::ifstream file(this->data_file_);
     std::string str;
+
+    //list of match guids
+    std::set<std::string> node_guids;
+    std::pair<std::set<std::string>::iterator,bool> node_guids_ret;
 
     boost::regex getNodesRegEx("^{(.*)} {(.*)} (.*)$");
     boost::smatch getNodesRegExResults;
@@ -52,6 +60,7 @@ bool ibf_parserer::parse(int action, std::string param) {
     {
         boost::regex_match(str, getNodesRegExResults, getNodesRegEx);
         for (int i=1; i<=3; i++){
+        //int i=1;
 #ifdef DEBUG
             std::cout << "Item " << i << " : " << getNodesRegExResults[i] << std::endl;
 #endif
@@ -62,23 +71,33 @@ bool ibf_parserer::parse(int action, std::string param) {
                 std::unique_ptr<ibf_node> node(new ibf_node(dump));
                 if (!node->load()) {
                     std::cerr << "Got error on loading dump string:" << std::endl << dump << std::endl;
+                    file.close();
                     return false;
                 }
 
                 switch (action) {
                     case D_ACTION_NODES_ALL:
-                        node->print();
+                        node_guids_ret = node_guids.insert(node->getNodeGUID());
+                        if (node_guids_ret.second==true) node->print();
                     break;
                     case D_ACTION_NODE:
                         if (node->getNodeGUID() == param) {
                             node->print();
+                            file.close();
+                            return true;
                         }
                     break;
                     case D_ACTION_NODES_REG:
-                        boost::regex searchString(param);
-                        boost::smatch searchStringResults;
-                        if (boost::regex_match(node->getNodeGUID(), searchStringResults, searchString)){
-                            node->print();
+                        try {
+                            boost::regex searchString(param);
+                            boost::smatch searchStringResults;
+                            if (boost::regex_match(node->getNodeGUID(), searchStringResults, searchString)){
+                                node_guids_ret = node_guids.insert(node->getNodeGUID());
+                                if (node_guids_ret.second==true) node->print();
+                            }
+                        } catch (boost::regex_error& e) {
+                            std::cerr << "Exception parsing regexp: " << e.what() << "\n";
+                            return false;
                         }
                     break;
                 }
@@ -87,5 +106,6 @@ bool ibf_parserer::parse(int action, std::string param) {
             }
         }
     }
+    file.close();
     return true;
 }

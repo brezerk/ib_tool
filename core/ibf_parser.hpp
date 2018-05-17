@@ -83,7 +83,6 @@ private:
      * Array for storing nodes id's.
      */
     std::array<std::string, 0> nodes_;
-
 };
 
 #endif // IBF_PARSER_H
